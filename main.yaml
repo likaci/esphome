@@ -1,0 +1,56 @@
+esphome:
+  name: main
+
+esp32:
+  board: lolin32
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+  level: DEBUG
+
+# Enable Home Assistant API
+api:
+  password: "2bt7yHGZf6RLQU"
+
+ota:
+  password: "2bt7yHGZf6RLQU"
+
+wifi:
+  ssid: ".X"
+  password: "b3456789c"
+
+esp32_ble_tracker:
+  scan_parameters:
+    active: false
+
+sensor:
+  - platform: xiaomi_ptx_yk1_qmimb
+    mac_address: "A4:C1:38:1A:6A:B2"
+    bindkey: "6fb3f0c214eef4f7ad78467d9aa5fc16"
+    temperature:
+      name: "PTX Temperature"
+    humidity:
+      name: "PTX Humidity"
+    battery_level:
+      name: "PTX Battery Level"
+
+  # - platform: xiaomi_lywsd03mmc
+  #   mac_address: "A4:C1:38:12:44:49"
+  #   bindkey: "5ef2234372f247adf824497fef3ef026"
+  #   temperature:
+  #     name: "Fang Temperature"
+  #   humidity:
+  #     name: "Fang Humidity"
+  #   battery_level:
+  #     name: "Fang Battery Level"
+
+  # - platform: xiaomi_lywsdcgq
+  #   mac_address: "4C:65:A8:D2:41:C9"
+  #   temperature:
+  #     name: "Yuan Temperature"
+  #   humidity:
+  #     name: "Yuan Humidity"
+  #   battery_level:
+  #     name: "Yuan Battery Level"

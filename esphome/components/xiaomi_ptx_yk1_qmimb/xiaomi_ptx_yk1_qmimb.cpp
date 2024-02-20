@@ -1,14 +1,14 @@
-#include "xiaomi_lywsd03mmc.h"
+#include "xiaomi_ptx_yk1_qmimb.h"
 #include "esphome/core/log.h"
 
 #ifdef USE_ESP32
 
 namespace esphome {
-namespace xiaomi_lywsd03mmc {
+namespace xiaomi_ptx_yk1_qmimb {
 
-static const char *const TAG = "xiaomi_lywsd03mmc";
+static const char *const TAG = "xiaomi_ptx_yk1_qmimb";
 
-void XiaomiLYWSD03MMC::dump_config() {
+void XiaomiPTX_YK1_QMIMB::dump_config() {
   ESP_LOGCONFIG(TAG, "Xiaomi LYWSD03MMC");
   ESP_LOGCONFIG(TAG, "  Bindkey: %s", format_hex_pretty(this->bindkey_, 16).c_str());
   LOG_SENSOR("  ", "Temperature", this->temperature_);
@@ -16,7 +16,7 @@ void XiaomiLYWSD03MMC::dump_config() {
   LOG_SENSOR("  ", "Battery Level", this->battery_level_);
 }
 
-bool XiaomiLYWSD03MMC::parse_device(const esp32_ble_tracker::ESPBTDevice &device) {
+bool XiaomiPTX_YK1_QMIMB::parse_device(const esp32_ble_tracker::ESPBTDevice &device) {
   if (device.address_uint64() != this->address_) {
     // ESP_LOGD(TAG, "parse_device(): unknown MAC address.");
     return false;
@@ -59,7 +59,7 @@ bool XiaomiLYWSD03MMC::parse_device(const esp32_ble_tracker::ESPBTDevice &device
   return success;
 }
 
-void XiaomiLYWSD03MMC::set_bindkey(const std::string &bindkey) {
+void XiaomiPTX_YK1_QMIMB::set_bindkey(const std::string &bindkey) {
   memset(bindkey_, 0, 16);
   if (bindkey.size() != 32) {
     return;
@@ -71,7 +71,7 @@ void XiaomiLYWSD03MMC::set_bindkey(const std::string &bindkey) {
   }
 }
 
-}  // namespace xiaomi_lywsd03mmc
+}  // namespace xiaomi_ptx_yk1_qmimb
 }  // namespace esphome
 
 #endif

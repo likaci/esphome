@@ -1,5 +1,6 @@
 #include "xiaomi_lywsdcgq.h"
 #include "esphome/core/log.h"
+#include "esphome/core/helpers.h"
 
 #ifdef USE_ESP32
 
@@ -17,10 +18,10 @@ void XiaomiLYWSDCGQ::dump_config() {
 
 bool XiaomiLYWSDCGQ::parse_device(const esp32_ble_tracker::ESPBTDevice &device) {
   if (device.address_uint64() != this->address_) {
-    ESP_LOGVV(TAG, "parse_device(): unknown MAC address.");
+    // ESP_LOGD(TAG, "parse_device(): unknown MAC address.");
     return false;
   }
-  ESP_LOGVV(TAG, "parse_device(): MAC address %s found.", device.address_str().c_str());
+  ESP_LOGD(TAG, "parse_device(): MAC address %s found.", device.address_str().c_str());
 
   bool success = false;
   for (auto &service_data : device.get_service_datas()) {
@@ -32,7 +33,7 @@ bool XiaomiLYWSDCGQ::parse_device(const esp32_ble_tracker::ESPBTDevice &device) 
       continue;
     }
     if (res->has_encryption) {
-      ESP_LOGVV(TAG, "parse_device(): payload decryption is currently not supported on this device.");
+      ESP_LOGD(TAG, "parse_device(): payload decryption is currently not supported on this device.");
       continue;
     }
     if (!(xiaomi_ble::parse_xiaomi_message(service_data.data, *res))) {
